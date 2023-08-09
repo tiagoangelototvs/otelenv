@@ -20,7 +20,7 @@ resource "helm_release" "argocd" {
       "fullnameOverride" = "argocd",
       "server"           = {
         "extraArgs" = ["--insecure"]
-        "ingress"   = { "enabled" = true, "hosts" = ["argocd.${local.cluster_host}"] }
+        "ingress"   = { "enabled" = true, "ingressClassName" = "nginx", "hosts" = ["argocd.${local.cluster_host}"] }
       }
       "configs" = {
         "secret" = {

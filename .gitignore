@@ -1,0 +1,5 @@
+.terraform/
+.terraform.lock.hcl
+otelenv-config
+terraform.tfstate
+terraform.tfstate.backup

@@ -1,4 +1,4 @@
-resource "kubectl_manifest" "helm_repository_nginx" {
+resource "kubectl_manifest" "nginx_application" {
   yaml_body = <<-YAML
     apiVersion: argoproj.io/v1alpha1
     kind: Application
@@ -6,6 +6,10 @@ resource "kubectl_manifest" "helm_repository_nginx" {
       name: nginx
       namespace: ${kubernetes_namespace.argocd.metadata[0].name}
     spec:
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
       destination:
         server: "https://kubernetes.default.svc"
         namespace: ${kubernetes_namespace.nginx.metadata[0].name}
